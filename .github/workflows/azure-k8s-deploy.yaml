@@ -1,0 +1,36 @@
+name: Deploy and configure Kubernetes in Azure with Terraform
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  setup-install:
+    name: Setup, Install
+    runs-on: ubuntu-latest
+    
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: "Setup Terraform"
+      uses: hashicorp/setup-terraform@v1
+    
+    - name: Terraform Init 
+      run: |-
+        terraform init
+
+    - name: Terraform Validate
+      run: |-
+        terraform Validate
+
+    - name: Terraform Plan
+      run: |-
+        terraform plan
