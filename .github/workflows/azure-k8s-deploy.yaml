@@ -33,4 +33,4 @@ jobs:
 
     - name: Terraform Plan
       run: |-
-        terraform plan -no-color
+        terraform plan --var-file=vars.tfvars
