@@ -37,4 +37,4 @@ jobs:
 
     - name: Terraform Destroy
       run: |-
-        terraform destroy --var-file=vars.tfvars -auto-approve
+        terraform destroy -auto-approve
