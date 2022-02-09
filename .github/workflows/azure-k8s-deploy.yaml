@@ -25,7 +25,7 @@ jobs:
     
     - name: Terraform Init 
       run: |-
-        terraform init -backend-config="backend.tfvars"
+        terraform init -backend-config=backend.tfvars -lock=false
 
     - name: Terraform Validate
       run: |-
