@@ -20,3 +20,7 @@ variable "tenant_id" {}
 variable "env" {}
 
 
+variable "backend_rg" {}
+variable "backend_st" {}
+variable "backend_cn" {}
+variable "backend_key" {}
