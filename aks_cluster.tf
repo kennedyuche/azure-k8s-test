@@ -1,11 +1,3 @@
-backend "azurerm" {
-  resource_group_name = var.backend_rg
-  storage_account_name = var.backend_st
-  container_name = var.backend_cn
-  key = var.backend_key
-}
-
-
 resource "azurerm_resource_group" "rg" {
   location = var.resource_group_location
   name     = var.resource_group_name
