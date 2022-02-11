@@ -15,6 +15,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
 
     steps:
     - name: Checkout Repository
@@ -25,16 +26,24 @@ jobs:
     
     - name: Terraform Init 
       run: |-
-        terraform init -backend-config=backend.tfvars
+        terraform init -backend-config="backend.tfvars"
+      working-directory: '.'
 
     - name: Terraform Validate
       run: |-
-        terraform validate
+        terraform validate -no-color
+      working-directory: '.'
 
     - name: Terraform Plan
       run: |-
-        terraform plan --var-file=vars.tfvars -var-file=backend.tfvars -lock=false
+        terraform plan --var-file=vars.tfvars -no-color -out=plan.tfdata
+      working-directory: '.'
 
     - name: Terraform Apply
       run: |-
-        terraform apply --var-file=vars.tfvars -var-file=backend.tfvars -lock=false -auto-approve
+        terraform apply -auto-approve plan.tfdata
+      working-directory: '.'
+
+#    - name: Terraform Destroy
+#      run: |-
+#        terraform destroy -auto-approve --var-file=vars.tfvars

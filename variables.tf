@@ -1,5 +1,8 @@
 variable "resource_group_name" {}
 variable "resource_group_location" {}
+variable "storage_account_name" {}
+variable "storage_account_container" {}
+variable "storage_key" {}
 variable "cluster_name" {}
 variable "kubernetes_version" {}
 
@@ -18,9 +21,3 @@ variable "subscription_id" {}
 variable "tenant_id" {}
 
 variable "env" {}
-
-
-variable "backend_rg" {}
-variable "backend_st" {}
-variable "backend_cn" {}
-variable "backend_key" {}
