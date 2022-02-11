@@ -5,7 +5,7 @@ data "azurerm_kubernetes_service_versions" "current" {
 
 resource "azurerm_kubernetes_cluster" "k8s" {
   name                = "${var.cluster_name}-cluster"
-  location            = var.resource_group_locaton
+  location            = var.resource_group_location
   resource_group_name = var.resource_group_name
   dns_prefix          = "k8scluster"
   kubernetes_version  = data.azurerm_kubernetes_service_versions.current.latest_version
